@@ -34,12 +34,21 @@ export class Map {
 
   addMarker(marker: IMarker): void {
     this.loader.load().then(google => {
-      new google.maps.Marker({
+      const pin = new google.maps.Marker({
         map: this.googleMap,
         position: {
           lat: marker.location.lat,
           lng: marker.location.lng
-        }
+        },
+        title: marker.name
+      });
+
+      const infoWindow = new google.maps.InfoWindow({
+        content: `<h4>Location of ${marker.name}</h4>`
+      });
+
+      pin.addListener("click", () => {
+        infoWindow.open(this.googleMap, pin);
       });
     });
   }
