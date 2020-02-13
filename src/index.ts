@@ -1,4 +1,7 @@
 import { User } from "./classes/User";
 import { Map } from "./classes/Map";
+import { Company } from "./classes/Company";
 
-const customMap = new Map("map");
+const newMap = new Map("map");
+newMap.addMarker(new User());
+newMap.addMarker(new Company());
